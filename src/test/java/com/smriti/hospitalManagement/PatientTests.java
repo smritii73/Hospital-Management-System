@@ -44,7 +44,7 @@ public class PatientTests {
         /* Patient patient = patientService.getPatientById(1L);
         System.out.println(patient); */
         // Patient patient = patientRepository.findByName("Smriti Dube");
-        /* List<Patient> patientList = patientRepository.findByBirthDateOrEmail(LocalDate.of(2004, 01, 21,"smriti@gmail.com")); */
+        /* List<Patient> patientList = patientRepository.findByBirthDateOrEmail(LocalDate.of(2004, 1, 21), "smriti@gmail.com" ); */
         List<Patient> patientList = patientRepository.findByBornAfterDate(LocalDate.of(2002,1,18));
         for(Patient patient: patientList){
             System.out.println(patient);
