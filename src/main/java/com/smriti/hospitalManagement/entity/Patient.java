@@ -9,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @ToString
 @Entity
@@ -48,4 +50,12 @@ public class Patient {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
+    @OneToOne(cascade= {CascadeType.ALL}, orphanRemoval=true)
+    @JoinColumn(name="patient_insurance_id") // Owning side
+    private Insurance insurance;
+
+    /* @OneToMany(mappedBy = "patient",cascade = {CascadeType.REMOVE},orphanRemoval = true) // either fetch = FetchType.EAGER and never LAZY as expensive db operations or ToString()
+    @ToString.Exclude */
+    @OneToMany(mappedBy = "patient",cascade = {CascadeType.REMOVE},orphanRemoval = true, fetch=FetchType.EAGER)
+    private List<Appointment> appointments = new ArrayList<>();
 }
